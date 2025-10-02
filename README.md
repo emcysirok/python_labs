@@ -52,7 +52,7 @@ mi = minu%60
 print(f'{hours}:{mi:02d}')
 ```
 
-![№4](images\lab01\04_minutes_to_hhmm.PNG)
+![№4](images/lab01/04_minutes_to_hhmm.PNG)
 
 
 ## Задание 5
