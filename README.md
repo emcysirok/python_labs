@@ -186,7 +186,7 @@ print(col_sums([[1, 2], [3]]))
 ![№2](images/lab02/02_matrix.py.png)
 
 
-# Задание C
+## Задание C
 ```python
 def format_record(rec: tuple[str, str, float]) -> str:
     fio,group,gpa = rec
