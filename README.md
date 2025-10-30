@@ -276,6 +276,30 @@ print(top_n(count_freq(["bb","aa","bb","aa","cc"]), n=2))
 
 
 ## Задание B
+```python
+import sys
+from lib.text import normalize, tokenize, count_freq, top_n
+
+def main():
+    text = "Привет, мир! Привет!!!"
+    
+    normalized_text = normalize(text)
+    tokens = tokenize(normalized_text)
+    freq = count_freq(tokens)
+    top_words = top_n(freq, 5)
+    
+    print(f"всего слов: {len(tokens)}")
+    print(f"уникальных слов: {len(freq)}")
+    print("топ-5:")
+    for word, count in top_words:
+        print(f"{word}:{count}")
+
+if __name__ == "__main__":
+    main()
+```
+![№2](images/lab03/text_stats.py.png)
 
 
 
+# Лабораторная 4
+## Задание A
