@@ -346,7 +346,6 @@ if __name__ == "__main__":
         print("Ошибка кодировки при чтении файла")
 ```
 
-
-![№1](images/lab04/io_txt_cvs.png)
-
-![№2](images/lab04/io_txt_cvs_result.png)
+![№1](images/lab04/io_txt_cvs.py.png) 
+![№2](images/lab04/report.csv.png)
+![№3](images/lab04/io_txt_cvs.py.input.png)

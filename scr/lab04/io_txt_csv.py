@@ -1,3 +1,5 @@
+from collections import Counter
+import re
 from pathlib import Path
 import csv
 from typing import Iterable, Sequence
@@ -30,11 +32,19 @@ def ensure_parent_dir(path: str | Path) -> None:
 
 if __name__ == "__main__":
     
-    write_csv([("word", "count"), ("test", 3)], "data/result.csv")
     try:
-        txt = read_text("scr/lab04/input.txt")
-        print("Файл успешно прочитан")
+        txt = read_text("input.txt")
+        words = re.findall(r'\w+', txt.lower())
+        counts = Counter(words)
+        sorted_words = sorted(counts.items(), key=lambda x: (-x[1], x[0]))
+        
+        write_csv(sorted_words, "report.csv", header=("word", "count"))
+        
+        print(f"Всего слов: {sum(counts.values())}")
+        print(f"Уникальных слов: {len(counts)}")
+        print("Топ-5:")
+        for word, count in sorted_words[:5]:
+            print(f"{word}:{count}")
+            
     except FileNotFoundError:
         print("Файл input.txt не найден")
-    except UnicodeDecodeError:
-        print("Ошибка кодировки при чтении файла")
