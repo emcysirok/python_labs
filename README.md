@@ -668,6 +668,7 @@ except Exception as e:
     print(f"ошибка: {e}")
     sys.exit(1)
 ```
-![№1](images/lab06/cli_text.py2.png)
+![№1](images/lab06/cli_convert.py.png)
+
 
 
