@@ -673,7 +673,7 @@ except Exception as e:
 
 
 # Лабораторная 7
-# задание A
+## задание A
 
 ```python
 import pytest
@@ -733,7 +733,7 @@ def test_top_n(freq, n, expected):
 ```
 ![№1](images/lab07/test_text.py.png)
 
-# задание B
+## задание B
 ```python
 import pytest
 import json
@@ -821,3 +821,7 @@ def test_round_trip(tmp_path):
     assert result == [{"a": "1", "b": "2"}]
 ```
 ![№1](images/lab07/test_json_csv.py.png)
+
+
+# Лабораторная 8
+## задание A
