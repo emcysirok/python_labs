@@ -1,0 +1,8 @@
+README.md
+pyproject.toml
+python_labs.egg-info/PKG-INFO
+python_labs.egg-info/SOURCES.txt
+python_labs.egg-info/dependency_links.txt
+python_labs.egg-info/requires.txt
+python_labs.egg-info/top_level.txt
+scr/__init__.py

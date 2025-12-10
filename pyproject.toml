@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "python_labs"
+version = "1.0.0"
+description = "лабораторные работы по Python"
+
+[project.optional-dependencies]
+dev = [
+    "pytest >= 8.0.0",
+    "pytest-cov >= 5.0.0",
+    "black >= 24.0.0",
+]
+
+[tool.setuptools]
+packages = ["scr"]  # говорим что только scr - пакет
+
+[tool.black]
+line-length = 88
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
