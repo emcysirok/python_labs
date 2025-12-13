@@ -1025,3 +1025,6 @@ if __name__ == "__main__":
 ```
 ![№1](images/lab09/group1.png)
 ![№2](images/lab09/group2.png)
+
+# Лабораторная 10
+## Задание A
