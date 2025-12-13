@@ -10,9 +10,17 @@ class Student:
         try:
             datetime.strptime(self.birthdate, "%Y-%m-%d") # пытаемся преобразовать строку в дату по указанному формату
         except ValueError:
-            raise ValueError # если не получается - выбрасываем ошибку
-        if not (0 <= self.gpa <= 5): # проверка диапазона среднего баллаа
-            raise ValueError
+            raise ValueError(f"Неверный формат даты: {self.birthdate}. Ожидается YYYY-MM-DD") # если не получается - выбрасываем ошибку
+        
+        # ПРЕОБРАЗУЕМ GPA В FLOAT ЕСЛИ ОН СТРОКА
+        if isinstance(self.gpa, str):
+            try:
+                self.gpa = float(self.gpa)
+            except ValueError:
+                raise ValueError(f"GPA должен быть числом, получено: {self.gpa}")
+        
+        if not (0 <= self.gpa <= 5): # проверка диапазона среднего балла
+            raise ValueError(f"GPA должен быть от 0 до 5, получено: {self.gpa}")
     def age(self) -> int: # метод для вычисления возраста студента
         birth_date = datetime.strptime(self.birthdate, "%Y-%m-%d").date() # преобразуем строку с датой рождения в объект date
         today = date.today() # получаем текущую дату
