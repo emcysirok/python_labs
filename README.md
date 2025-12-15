@@ -1028,3 +1028,182 @@ if __name__ == "__main__":
 
 # Лабораторная 10
 ## Задание A
+```python
+from collections import deque #deque нужен для эффективной реализации очереди
+
+class Stack: #Стек — структура данных LIFO
+    def __init__(self):
+        self._data = [] #_data — приватный атрибут
+    def push(self, item): #push — добавляет элемент на вершину стека
+        self._data.append(item) #добавляет элемент в конец списка
+    def pop(self):
+        if self.is_empty():
+            raise IndexError
+        return self._data.pop() #удаляет последний элемент списка и возвращает его
+    def peek(self): #смотрит верхний элемент без удаления
+        if self.is_empty():
+            return None
+        return self._data[-1] #обращение к последнему элементу списка
+    def is_empty(self):
+        return len(self._data) == 0
+    def __len__(self): #вызывается при использовании len(obj)
+        return len(self._data)
+    def __str__(self): #при преобразовании объекта в строку
+        return f"Stack({self._data})" #Возвращает строку вида Stack([элементы])
+
+class Queue: #Очередь — структура данных FIFO
+    def __init__(self):
+        self._data = deque() #создаёт пустую двустороннюю очередь
+    def enqueue(self, item): #добавляет элемент в конец очереди
+        self._data.append(item) #добавляет элемент в правый конец deque
+    def dequeue(self): #удаляет и возвращает элемент из начала очереди
+        if self.is_empty():
+            raise IndexError
+        return self._data.popleft() # удаляет элемент с левого конца deque
+    def peek(self): 
+        if self.is_empty():
+            return None
+        return self._data[0] #обращение к первому элементу deque
+    def is_empty(self):
+        return len(self._data) == 0
+    def __len__(self):
+        return len(self._data)
+    def __str__(self): #Преобразует deque в список для красивого отображения
+        return f"Queue({list(self._data)})"
+
+if __name__ == "__main__":
+    s = Stack() #Демонстрация стека
+    s.push(10)
+    s.push(20)
+    s.push(30)
+    print(s)
+    print(f"peek: {s.peek()}")
+    print(f"pop: {s.pop()}")
+    print(s)
+    print() 
+    q = Queue() #Демонстрация очереди
+    q.enqueue("A")
+    q.enqueue("B")
+    q.enqueue("C")
+    print(q)
+    print(f"peek: {q.peek()}")
+    print(f"dequeue: {q.dequeue()}")
+    print(q)
+```
+
+![№1](images/lab10/structures.py.png)
+
+
+# Задание B
+```python
+class Node:
+    def __init__(self, value, next=None):
+        self.value = value
+        self.next = next
+
+
+class SinglyLinkedList:
+    def __init__(self):
+        self.head = None
+        self.tail = None 
+        self._size = 0
+
+    def append(self, value):
+        new_node = Node(value)
+        if self.head is None:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            self.tail.next = new_node
+            self.tail = new_node
+
+        self._size += 1
+    
+    def prepend(self, value):
+        new_node = Node(value, next=self.head)
+        self.head = new_node
+        if self.tail is None:
+            self.tail = new_node
+        self._size += 1
+
+    def insert(self, idx, value):
+        if idx < 0 or idx > self._size:
+            raise IndexError()
+
+        if idx == 0:
+            self.prepend(value)
+            return
+
+        if idx == self._size:
+            self.append(value)
+            return
+
+        current = self.head
+        for _ in range(idx - 1):
+            current = current.next
+
+        new_node = Node(value, current.next)
+        current.next = new_node
+        self._size += 1
+
+    def remove_at(self, idx):
+        if idx < 0 or idx >= self._size:
+            raise IndexError()
+
+        if idx == 0:
+            removed = self.head
+            self.head = self.head.next
+            if self.head is None:
+                self.tail = None
+            self._size -= 1
+            return removed.value
+
+        current = self.head
+        for _ in range(idx - 1):
+            current = current.next
+
+        removed = current.next
+        current.next = removed.next
+
+        if removed is self.tail:
+            self.tail = current
+
+        self._size -= 1
+        return removed.value
+
+    def __iter__(self):
+        current = self.head
+        while current is not None:
+            yield current.value
+            current = current.next
+
+    def __len__(self):
+        return self._size
+
+    def __repr__(self):
+        values = list(self)
+        return f"SinglyLinkedList({values})"
+
+if __name__=="__main__":
+    print("Тесты SinglyLinkedList")
+
+    l = SinglyLinkedList()
+
+    l.append(1)
+    l.append(2)
+    l.append(3)
+    print("После append:", list(l)) 
+
+    l.prepend(0)
+    print("После prepend:", list(l))  
+
+    l.insert(2, 99)
+    print("После insert:", list(l))
+    
+    removed = l.remove_at(3)
+    print("remove_at(3) вернул:", removed)  
+    print("После remove_at:", list(l))  
+    print("len:", len(l))
+    print("repr:", repr(l))
+```
+![№1](images/lab10/linked_list.py.png)
